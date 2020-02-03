@@ -1,0 +1,109 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+import javax.swing.*;
+
+public class MyPanelScores extends JPanel implements ActionListener{
+	
+	private JButton btnAtras;
+	
+
+	private JLabel lbTitulo,
+				   lbScore1,
+				   lbScore2,
+				   lbScore3,
+				   lbScore4,
+				   lbScore5;
+	
+	private int[] top5 = new int[5];
+	
+	
+	public MyPanelScores(){
+		super();
+		this.setPreferredSize(new Dimension(1000, 800));
+		this.setBackground(Color.PINK);
+		this.setLayout(null);
+		
+		
+		this.lbTitulo = new JLabel("Top 5");
+		this.lbTitulo.setOpaque(true);
+		this.lbTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		this.lbTitulo.setFont(new Font("arial", Font.PLAIN, 50));
+		this.lbTitulo.setBounds(350,50,300,60);
+		
+		try {
+			FileReader fr = new FileReader("Scores.txt");    
+			BufferedReader br = new BufferedReader(fr);
+			
+			for (int i = 0; i < 5; i++) {
+				top5[i] = Integer.parseInt(br.readLine());
+			}
+			
+		}catch(Exception err){
+			System.out.println("error-----");
+		}
+		
+		
+		this.lbScore1 = new JLabel(Integer.toString(top5[0]));
+		this.lbScore1.setOpaque(true);
+		this.lbScore1.setHorizontalAlignment(SwingConstants.CENTER);
+		this.lbScore1.setFont(new Font("arial", Font.PLAIN, 50));
+		this.lbScore1.setBounds(350,130,300,60);
+		
+		this.lbScore2 = new JLabel(Integer.toString(top5[1]));
+		this.lbScore2.setOpaque(true);
+		this.lbScore2.setHorizontalAlignment(SwingConstants.CENTER);
+		this.lbScore2.setFont(new Font("arial", Font.PLAIN, 50));
+		this.lbScore2.setBounds(350,205,300,60);
+		
+		this.lbScore3 = new JLabel(Integer.toString(top5[2]));
+		this.lbScore3.setOpaque(true);
+		this.lbScore3.setHorizontalAlignment(SwingConstants.CENTER);
+		this.lbScore3.setFont(new Font("arial", Font.PLAIN, 50));
+		this.lbScore3.setBounds(350,280,300,60);
+		
+		this.lbScore4 = new JLabel(Integer.toString(top5[3]));
+		this.lbScore4.setOpaque(true);
+		this.lbScore4.setHorizontalAlignment(SwingConstants.CENTER);
+		this.lbScore4.setFont(new Font("arial", Font.PLAIN, 50));
+		this.lbScore4.setBounds(350,355,300,60);
+		
+		this.lbScore5 = new JLabel(Integer.toString(top5[4]));
+		this.lbScore5.setOpaque(true);
+		this.lbScore5.setHorizontalAlignment(SwingConstants.CENTER);
+		this.lbScore5.setFont(new Font("arial", Font.PLAIN, 50));
+		this.lbScore5.setBounds(350,430,300,60);
+		
+		this.btnAtras=new JButton("Atrás");
+		this.btnAtras.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnAtras.setFont(new Font("arial", Font.PLAIN, 50));
+		this.btnAtras.setBounds(400,695,200,50);
+		this.btnAtras.setBackground(Color.RED);
+		this.btnAtras.addActionListener(this);
+		
+		this.add(this.lbTitulo);
+		this.add(this.lbScore1);
+		this.add(this.lbScore2);
+		this.add(this.lbScore3);
+		this.add(this.lbScore4);
+		this.add(this.lbScore5);
+		this.add(this.btnAtras);
+		
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == btnAtras) {
+			MyVentanaMenu fm = new MyVentanaMenu();
+			fm.setVisible(true);
+			this.setVisible(false);
+		}
+		
+	}
+
+
+
+}

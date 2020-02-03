@@ -1,0 +1,14 @@
+
+public class Backtracking {
+	
+	public static void pintaTablero(int [][] tablero){
+		
+	}
+	
+	
+	
+	public static void main(String args[]){
+		
+	}
+
+}

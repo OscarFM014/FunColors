@@ -1,0 +1,27 @@
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+
+public class MyVentana extends JFrame{
+
+	public MyVentana(){
+		super("FUN COLORS");
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		MyPanelDibujo pd = new MyPanelDibujo();
+		MyCuadricula mc = new MyCuadricula();
+		this.add(pd); 
+		this.add(new MyPanelControles(pd), BorderLayout.WEST); 
+		this.pack();
+		this.CENTER_ALIGNMENT;
+		this.setVisible(true); 
+
+	}
+
+
+	public static void main(String[] args) {
+		MyVentana v = new MyVentana();
+
+	}
+}
+

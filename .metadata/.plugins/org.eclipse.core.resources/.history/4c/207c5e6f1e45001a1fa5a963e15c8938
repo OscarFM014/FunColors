@@ -1,0 +1,18 @@
+
+public class Backtracking {
+	public static void pintaTablero(int [][] tablero){
+		for (int i = 0; i < tablero.length; i++) {
+			for(int j = 0; j < tablero.length[i]; j++){
+				
+			}
+		}
+		
+	}
+	
+	
+	
+	public static void main(String args[]){
+		
+	}
+
+}

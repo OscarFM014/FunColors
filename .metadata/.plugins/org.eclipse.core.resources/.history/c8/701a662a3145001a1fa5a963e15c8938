@@ -1,0 +1,55 @@
+
+public class Backtracking {
+	//Rojo 	 	-> 1
+	//Morado 	-> 2
+	//Rosa   	-> 3
+	//Verde  	-> 4
+	//Azul 	 	-> 5
+	//Amarillo 	-> 6
+	public static void pintaTablero(int [][] tablero, int nuevoColor){
+		int antiguoColor = tablero[0][0];
+		
+		pintaTablero(tablero, 0, 0, antiguoColor, nuevoColor);
+		
+	}
+	
+	public static void pintaTablero(int [][] tablero, int fila , int columna, int antiguoColor, int nuevoColor){
+		if(fila < 0 || columna < 0 || fila >= tablero.length || columna >= tablero[0].length || tablero[fila][columna] != antiguoColor ){
+			return;
+		}
+		tablero[fila][columna] = nuevoColor;
+		pintaTablero(tablero, fila + 1, columna, antiguoColor, nuevoColor);
+		pintaTablero(tablero, fila - 1, columna, antiguoColor, nuevoColor);
+		pintaTablero(tablero, fila, columna + 1, antiguoColor, nuevoColor);
+		pintaTablero(tablero, fila, columna - 1, antiguoColor, nuevoColor);
+		
+	}
+	
+	
+	public static void main(String args[]){
+		int[][] arreglo = { { 1, 1, 5},
+							{ 2, 3, 4},
+							{ 1, 6, 2}};
+		
+		for (int fila = 0; fila < arreglo.length; fila++) {
+			for (int columna = 0; columna < arreglo[fila].length; columna++) {
+				System.out.print(arreglo[fila][columna] + ",") ;
+			}
+			System.out.println();
+		}
+		
+		System.out.println();
+		
+		pintaTablero(arreglo, 2);
+		
+		for (int fila = 0; fila < arreglo.length; fila++) {
+			for (int columna = 0; columna < arreglo[fila].length; columna++) {
+				System.out.print(arreglo[fila][columna] + ",") ;
+			}
+			System.out.println();
+		}
+		
+		
+	}
+
+}

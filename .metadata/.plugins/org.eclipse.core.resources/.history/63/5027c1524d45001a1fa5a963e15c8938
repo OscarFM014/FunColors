@@ -1,0 +1,100 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSlider;
+import javax.swing.JTextField;
+
+public class MyPanelControles extends  JPanel{
+	private JTextField tfNombre;
+	private JButton btnNombre,
+	btnColor,
+	btnGuardar,
+	btnAbrir;
+
+	private JRadioButton rbRojo,
+	rbVerde,
+	rbAzul;
+
+
+	private JPanel panelColor; //cuadro
+
+	private JSlider slider;
+	private JFileChooser fc;
+
+	private MyPanelDibujo pd; //unir archivos 
+
+	public MyPanelControles(MyPanelDibujo pd){
+		super();
+		this.pd = pd;
+		this.setPreferredSize(new Dimension(150,600));
+		this.tfNombre = new JTextField(10);
+		this.btnNombre=new JButton("Saluda");
+		this.btnNombre.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//pd.setNombre(tfNombre.getText());
+
+			}
+
+		}); //ponerle al action
+		this.fc = new JFileChooser();
+
+		this.rbRojo = new JRadioButton("Color Rojo", true ); //SELECCIONADO
+		this.rbVerde = new JRadioButton("Color Verde");
+		this.rbAzul = new JRadioButton("Color Azul");
+
+		ButtonGroup bg = new ButtonGroup();
+		bg.add(this.rbRojo);
+		bg.add(this.rbVerde);
+		bg.add(this.rbAzul);
+
+		this.btnColor = new JButton("Cambiar color");
+
+
+
+		this.panelColor = new JPanel();
+		this.panelColor.setPreferredSize(new Dimension(70, 70));
+		//this.panelColor.addMouseListener(this);
+		this.panelColor.setBackground(Color.RED);
+
+
+		//Slider
+		this.slider = new JSlider(JSlider.VERTICAL, 0, 200, 0);
+		this.slider.setMinorTickSpacing(10);
+		this.slider.setMajorTickSpacing(100);
+		this.slider.setPaintTicks(true);
+		this.slider.setPaintLabels(true);
+		// this.slider.addChangeListener(this);
+		this.add(this.slider);
+		
+
+		this.add(this.tfNombre);
+		this.add(this.btnNombre);
+
+
+		this.add(this.rbRojo);
+		this.add(this.rbVerde);
+		this.add(this.rbAzul);
+		this.add(this.btnColor);
+
+
+		this.add(this.panelColor);
+
+		this.add(this.slider);
+
+
+	}
+}

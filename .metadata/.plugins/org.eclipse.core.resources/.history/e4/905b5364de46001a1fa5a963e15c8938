@@ -1,0 +1,26 @@
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+
+public class MyVentanaDibujo extends JFrame{
+	
+	public MyVentanaDibujo(){
+		super("PIXELATED");
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		MyPanelDibujo pd = new MyPanelDibujo();
+		
+		this.add(pd); 
+		this.add(new MyPanelControles(pd), BorderLayout.WEST);
+		this.pachk();
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true); 
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		MyVentanaDibujo mv = new MyVentanaDibujo();
+	}
+}

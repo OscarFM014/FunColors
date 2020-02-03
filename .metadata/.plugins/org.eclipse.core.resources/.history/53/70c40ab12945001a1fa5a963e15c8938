@@ -1,0 +1,44 @@
+
+public class Backtracking {
+	//Rojo 	 	-> 1
+	//Morado 	-> 2
+	//Rosa   	-> 3
+	//Verde  	-> 4
+	//Azul 	 	-> 5
+	//Amarillo 	-> 6
+	
+	public static void pintaTablero(int [][] tablero, int color){
+		for (int fila = 0; fila < tablero.length; fila++) {
+			pintaTablero(tablero, fila, 0, color);
+		}
+		
+	}
+	
+	public static void pintaTablero(int [][] tablero, int fila , int columna, int color){
+		if(fila < 0 || columna < 0 || fila > tablero.length || columna > tablero[0].length || tablero[fila][columna] == color ){
+			return;
+		}
+		tablero[fila][columna] = color;
+		pintaTablero(tablero, fila + 1, columna, color);
+		pintaTablero(tablero, fila - 1, columna, color);
+		pintaTablero(tablero, fila, columna + 1, color);
+		pintaTablero(tablero, fila, columna - 1, color);
+		
+	}
+	
+	
+	public static void main(String args[]){
+		int[][] arreglo = { { 1, 1, 5},
+							{ 2, 3, 4},
+							{ 1, 6, 2}};
+		
+		pintaTablero(arreglo, 2);
+		
+		for (int fila = 0; fila < tablero.length; fila++) {
+			pintaTablero(tablero, fila, 0, color);
+		}
+		
+		
+	}
+
+}
