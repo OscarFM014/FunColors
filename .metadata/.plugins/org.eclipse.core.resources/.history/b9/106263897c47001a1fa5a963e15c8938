@@ -1,0 +1,234 @@
+
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+
+public class MyVentana implements ActionListener{
+	JFrame ventana;
+	JPanel menu,ins,dibujo;
+	private JButton btnJuegoNuevo,
+	btnComojugar,
+	btnScores;
+	
+	private JButton btnAtras;
+	
+
+	private JLabel lbTitulo,
+				   lbTexto;
+	
+	private Backtracking btk;
+	private JLabel gano;
+	private JLabel[][] cuadros;
+	
+	public void crearVentana(){
+		ventana = new JFrame("Fun Colors");
+		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		ventana.setSize(1000, 800);
+		this.crearMenu();
+		ventana.add(menu); 
+		ventana.setLocationRelativeTo(null);
+		ventana.setResizable(false);
+		ventana.setVisible(true);
+	}
+	
+	public void crearMenu(){
+		this.menu = new JPanel();
+		menu.setPreferredSize(new Dimension(1000,800));
+		menu.setBackground(Color.WHITE);
+		menu.setLayout(null);
+
+		this.btnJuegoNuevo=new JButton("Juego Nuevo");
+		this.btnJuegoNuevo.setBounds(350,420,300,60);
+		this.btnJuegoNuevo.setBackground(Color.RED);
+		this.btnJuegoNuevo.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnJuegoNuevo.setFont(new Font("arial", Font.PLAIN, 30));
+		this.btnJuegoNuevo.addActionListener(this);
+
+		this.btnComojugar=new JButton("Como Jugar");
+		this.btnComojugar.setBounds(350,580,300,60);
+		this.btnComojugar.setBackground(new Color(255, 13, 154));
+		this.btnComojugar.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnComojugar.setFont(new Font("arial", Font.PLAIN, 30));
+		this.btnComojugar.addActionListener(this);
+
+		this.btnScores=new JButton("Mejores Puntuaciones");
+		this.btnScores.setBounds(350,660,300,60);
+		this.btnScores.setBackground(new Color(255, 13, 154));
+		this.btnScores.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnScores.setFont(new Font("arial", Font.PLAIN, 30));
+		this.btnScores.addActionListener(this);
+
+		menu.add(this.btnJuegoNuevo);
+		menu.add(this.btnComojugar);
+		menu.add(this.btnScores);
+		menu.setVisible(true);
+	}
+	
+	public void crearIns(){
+		this.ins = new JPanel();
+		ins.setPreferredSize(new Dimension(1000, 800));
+		ins.setBackground(Color.PINK);
+		ins.setLayout(null);
+		
+
+		this.lbTitulo = new JLabel("Cómo jugar");
+		this.lbTitulo.setOpaque(true);
+		this.lbTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		this.lbTitulo.setFont(new Font("arial", Font.PLAIN, 50));
+		this.lbTitulo.setBounds(350,25,300,60);
+		
+		String texto = "<html><body>Un color es sufuciente! <br>  <br>Su objetivo es ordenar <br>la pantalla, dejando  "
+				+ "<br> solo un color. <br> Expanda \"su idea\" a <br> los píxeles vecinos, <br> eligiendo el color "
+				+ "de <br> los píxeles que se  <br> capturarán.</body></html>";
+		this.lbTexto = new JLabel(texto);
+		this.lbTexto.setOpaque(true);
+		this.lbTexto.setHorizontalAlignment(SwingConstants.CENTER);
+		this.lbTexto.setFont(new Font("arial", Font.PLAIN, 40));
+		this.lbTexto.setBounds(200,95,600,590);
+		
+		this.btnAtras=new JButton("Atrás");
+		this.btnAtras.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnAtras.setFont(new Font("arial", Font.PLAIN, 50));
+		this.btnAtras.setBounds(400,695,200,50);
+		this.btnAtras.setBackground(Color.RED);
+		this.btnAtras.addActionListener(this);
+		
+		ins.add(this.lbTitulo);
+		ins.add(this.lbTexto);
+		ins.add(this.btnAtras);
+		ins.setVisible(false);
+	}
+	
+	public void crearDibujo(){
+		dibujo.setPreferredSize(new Dimension(1000, 800));
+		this.btk = new Backtracking();
+		this.btk.crearTablero();
+		dibujo.setLayout(new GridLayout(14,14));
+		this.cuadros=new JLabel[14][14];
+		JLabel cuadro;
+		for(int i = 0; i< 14; i ++){
+			for(int j = 0; j< 14; j++){
+				int color = this.btk.matriz[i][j];
+				cuadro = new JLabel();
+				this.cuadros[i][j]=cuadro;
+				cuadro.setOpaque(true);
+				if(color == 1){
+					cuadro.setBackground(Color.decode("#ff2700"));
+
+				}else if(color == 2){
+					cuadro.setBackground(Color.decode("#a32ce8"));
+				
+				}else if(color == 3){
+					cuadro.setBackground(Color.decode("#ffa700"));
+				
+				}else if(color == 4){
+					cuadro.setBackground(Color.decode("#63ff00"));
+				
+				}else if(color == 5){
+					cuadro.setBackground(Color.decode("#3ea3ff"));
+				
+				}else if(color == 6){
+					cuadro.setBackground(Color.decode("#eaff41"));
+		
+				}
+				this.dibujo.add(cuadro);
+			}
+		}
+	}
+	
+	public void pintarCentros(int nuevoColor){
+		this.btk.pintaTableroCentro(this.btk.matriz, nuevoColor);
+		this.btk.setMovimientos(this.btk.getMovimientos()-1);
+		for(int i = 0; i< 14; i ++){
+			for(int j = 0; j< 14; j++){
+				int color = this.btk.matriz[i][j];
+				if(color == 1){
+					this.cuadros[i][j].setBackground(Color.decode("#ff2700"));
+
+				}else if(color == 2){
+					this.cuadros[i][j].setBackground(Color.decode("#a32ce8"));
+				
+				}else if(color == 3){
+					this.cuadros[i][j].setBackground(Color.decode("#ffa700"));
+				
+				}else if(color == 4){
+					this.cuadros[i][j].setBackground(Color.decode("#63ff00"));
+				
+				}else if(color == 5){
+					this.cuadros[i][j].setBackground(Color.decode("#3ea3ff"));
+				
+				}else if(color == 6){
+					this.cuadros[i][j].setBackground(Color.decode("#eaff41"));
+		
+				}
+			}
+		}
+		this.btk.imprimeTablero();
+		System.out.println();
+	}
+	
+	public void pintarEsquinas(int nuevoColor){
+		this.btk.pintaTableroEsquina(this.btk.matriz, nuevoColor);
+		this.btk.setMovimientos(this.btk.getMovimientos()-1);
+		for(int i = 0; i< 14; i ++){
+			for(int j = 0; j< 14; j++){
+				int color = this.btk.matriz[i][j];
+				if(color == 1){
+					this.cuadros[i][j].setBackground(Color.decode("#ff2700"));
+
+				}else if(color == 2){
+					this.cuadros[i][j].setBackground(Color.decode("#a32ce8"));
+				
+				}else if(color == 3){
+					this.cuadros[i][j].setBackground(Color.decode("#ffa700"));
+				
+				}else if(color == 4){
+					this.cuadros[i][j].setBackground(Color.decode("#63ff00"));
+				
+				}else if(color == 5){
+					this.cuadros[i][j].setBackground(Color.decode("#3ea3ff"));
+				
+				}else if(color == 6){
+					this.cuadros[i][j].setBackground(Color.decode("#eaff41"));
+		
+				}
+			}
+		}
+		this.dibujo.repaint();
+		this.btk.imprimeTablero();
+		System.out.println();
+	}
+	public static void main(String[] args) {
+		MyVentana v = new MyVentana();
+		v.crearVentana();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource() == this.btnComojugar){
+			this.menu.setVisible(false);
+			this.crearIns();
+			ventana.add(this.ins);
+			this.ins.setVisible(true);
+		}
+		
+		if(e.getSource() == this.btnAtras){
+			this.ins.setVisible(false);
+			this.menu.setVisible(true);
+		}
+		
+		if(e.getSource() == this.btnAtras){
+			this.ins.setVisible(false);
+			this.menu.setVisible(true);
+		}
+		
+		
+		
+	}
+}
+

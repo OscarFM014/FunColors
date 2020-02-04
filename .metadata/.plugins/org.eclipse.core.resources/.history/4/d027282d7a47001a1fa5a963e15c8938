@@ -1,0 +1,122 @@
+
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+
+public class MyVentana extends JFrame implements ActionListener{
+	JFrame ventana;
+	JPanel menu,ins;
+	private JButton btnJuegoNuevo,
+	btnOpciones,
+	btnComojugar,
+	btnScores;
+	
+	private JButton btnAtras;
+	
+
+	private JLabel lbTitulo,
+				   lbTexto;
+	
+	public void crearVentana(){
+		ventana = new JFrame("Fun Colors");
+		ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);	
+		ventana.add(menu,BorderLayout.SOUTH); 
+		ventana.pack();
+		setLocationRelativeTo(null);
+		ventana.setResizable(false);
+		ventana.setVisible(true);
+	}
+	
+	public void crearMenu(){
+		menu.setPreferredSize(new Dimension(1000,800));
+		menu.setBackground(Color.WHITE);
+		menu.setLayout(null);
+
+		this.btnJuegoNuevo=new JButton("Juego Nuevo");
+		this.btnJuegoNuevo.setBounds(350,420,300,60);
+		this.btnJuegoNuevo.setBackground(Color.RED);
+		this.btnJuegoNuevo.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnJuegoNuevo.setFont(new Font("arial", Font.PLAIN, 30));
+		this.btnJuegoNuevo.addActionListener(this);
+
+		this.btnOpciones =new JButton("Opciones");
+		this.btnOpciones.setBounds(350,500,300,60);
+		this.btnOpciones.setBackground(Color.MAGENTA);
+		this.btnOpciones.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnOpciones.setFont(new Font("arial", Font.PLAIN, 30));
+		this.btnOpciones.addActionListener(this);
+
+		this.btnComojugar=new JButton("Como Jugar");
+		this.btnComojugar.setBounds(350,580,300,60);
+		this.btnComojugar.setBackground(new Color(255, 13, 154));
+		this.btnComojugar.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnComojugar.setFont(new Font("arial", Font.PLAIN, 30));
+		this.btnComojugar.addActionListener(this);
+
+		this.btnScores=new JButton("Mejores Puntuaciones");
+		this.btnScores.setBounds(350,660,300,60);
+		this.btnScores.setBackground(new Color(255, 13, 154));
+		this.btnScores.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnScores.setFont(new Font("arial", Font.PLAIN, 30));
+		this.btnScores.addActionListener(this);
+
+		menu.add(this.btnJuegoNuevo);
+		menu.add(this.btnOpciones);
+		menu.add(this.btnComojugar);
+		menu.add(this.btnScores);
+		menu.setVisible(false);
+	}
+	
+	public void crearIns(){
+		ins.setPreferredSize(new Dimension(1000, 800));
+		ins.setBackground(Color.PINK);
+		ins.setLayout(null);
+		
+
+		this.lbTitulo = new JLabel("Cómo jugar");
+		this.lbTitulo.setOpaque(true);
+		this.lbTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		this.lbTitulo.setFont(new Font("arial", Font.PLAIN, 50));
+		this.lbTitulo.setBounds(350,25,300,60);
+		
+		String texto = "<html><body>Un color es sufuciente! <br>  <br>Su objetivo es ordenar <br>la pantalla, dejando  "
+				+ "<br> solo un color. <br> Expanda \"su idea\" a <br> los píxeles vecinos, <br> eligiendo el color "
+				+ "de <br> los píxeles que se  <br> capturarán.</body></html>";
+		this.lbTexto = new JLabel(texto);
+		this.lbTexto.setOpaque(true);
+		this.lbTexto.setHorizontalAlignment(SwingConstants.CENTER);
+		this.lbTexto.setFont(new Font("arial", Font.PLAIN, 40));
+		this.lbTexto.setBounds(200,95,600,590);
+		
+		this.btnAtras=new JButton("Atrás");
+		this.btnAtras.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnAtras.setFont(new Font("arial", Font.PLAIN, 50));
+		this.btnAtras.setBounds(400,695,200,50);
+		this.btnAtras.setBackground(Color.RED);
+		this.btnAtras.addActionListener(this);
+		
+		ins.add(this.lbTitulo);
+		ins.add(this.lbTexto);
+		ins.add(this.btnAtras);
+		ins.setVisible(false);
+	}
+	
+
+	public static void main(String[] args) {
+		MyVentana v = new MyVentana();
+		v.crearVentana();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == this.btnOpciones){
+			
+		}
+		
+	}
+}
+

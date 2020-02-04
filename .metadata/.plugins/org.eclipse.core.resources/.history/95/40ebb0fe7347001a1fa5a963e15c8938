@@ -1,0 +1,26 @@
+
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class MyVentana extends JFrame{
+	JFrame ventana;
+	
+	public void crearVentana(){
+		ventana = new JFrame("Fun Colors");
+		ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);	
+		this.getContentPane().add(nuevoPanel);
+		this.pack();
+		setLocationRelativeTo(null);
+		this.setResizable(false);
+		this.setVisible(true);
+	}
+	
+	
+
+	public static void main(String[] args) {
+		MyPanelMenu pm = new MyPanelMenu();
+		MyVentana v = new MyVentana(pm);
+	}
+}
+

@@ -1,0 +1,71 @@
+
+
+import java.awt.*;
+import javax.swing.*;
+
+
+public class MyVentana extends JFrame{
+	JFrame ventana;
+	JPanel menu;
+	private JButton btnJuegoNuevo,
+	btnOpciones,
+	btnComojugar,
+	btnScores;
+	
+	public void crearVentana(){
+		ventana = new JFrame("Fun Colors");
+		ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);	
+		ventana.add(panelMenu,BorderLayout.SOUTH); 
+		ventana.pack();
+		setLocationRelativeTo(null);
+		ventana.setResizable(false);
+		ventana.setVisible(true);
+	}
+	
+	public void crearMenu(){
+		menu.setPreferredSize(new Dimension(1000,800));
+		menu.setBackground(Color.WHITE);
+		menu.setLayout(null);
+		
+
+		this.btnJuegoNuevo=new JButton("Juego Nuevo");
+		this.btnJuegoNuevo.setBounds(350,420,300,60);
+		this.btnJuegoNuevo.setBackground(Color.RED);
+		this.btnJuegoNuevo.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnJuegoNuevo.setFont(new Font("arial", Font.PLAIN, 30));
+		this.btnJuegoNuevo.addActionListener(this);
+
+		this.btnOpciones =new JButton("Opciones");
+		this.btnOpciones.setBounds(350,500,300,60);
+		this.btnOpciones.setBackground(Color.MAGENTA);
+		this.btnOpciones.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnOpciones.setFont(new Font("arial", Font.PLAIN, 30));
+		this.btnOpciones.addActionListener(this);
+
+		this.btnComojugar=new JButton("Como Jugar");
+		this.btnComojugar.setBounds(350,580,300,60);
+		this.btnComojugar.setBackground(new Color(255, 13, 154));
+		this.btnComojugar.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnComojugar.setFont(new Font("arial", Font.PLAIN, 30));
+		this.btnComojugar.addActionListener(this);
+
+		this.btnScores=new JButton("Mejores Puntuaciones");
+		this.btnScores.setBounds(350,660,300,60);
+		this.btnScores.setBackground(new Color(255, 13, 154));
+		this.btnScores.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnScores.setFont(new Font("arial", Font.PLAIN, 30));
+		this.btnScores.addActionListener(this);
+
+		menu.add(this.btnJuegoNuevo);
+		menu.add(this.btnOpciones);
+		menu.add(this.btnComojugar);
+		menu.add(this.btnScores);
+	}
+	
+
+	public static void main(String[] args) {
+		MyVentana v = new MyVentana();
+		v.crearVentana();
+	}
+}
+

@@ -1,0 +1,31 @@
+
+
+import java.awt.*;
+import javax.swing.*;
+
+
+public class MyVentana extends JFrame{
+	JFrame ventana;
+
+	
+	public void crearVentana(){
+		ventana = new JFrame("Fun Colors");
+		ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);	
+		ventana.add(panelMenu,BorderLayout.SOUTH); 
+		ventana.pack();
+		setLocationRelativeTo(null);
+		ventana.setResizable(false);
+		ventana.setVisible(true);
+	}
+	
+	public void crearMenu(){
+		
+	}
+	
+
+	public static void main(String[] args) {
+		MyVentana v = new MyVentana();
+		v.crearVentana();
+	}
+}
+
