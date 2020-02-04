@@ -11,29 +11,19 @@ import javax.swing.*;
 public class MyVentana implements ActionListener{
 	JFrame ventana;
 	JPanel menu,ins,dibujo,controles;
-	private JButton btnJuegoNuevo,
-	btnComojugar,
-	btnScores;
-
-	private JButton btnAtras;
-
-
-	private JLabel lbTitulo,
-	lbTexto;
-
 	private Backtracking btk;
 	private JLabel[][] cuadros;
-
-
 	private JButton btnRojo,
 	btnMorado,
 	btnRosa,
 	btnVerde,
 	btnAzul,
 	btnAmarillo,
-	btnMenu;
-
-
+	btnMenu,
+	btnAtras,
+	btnJuegoNuevo,
+	btnComojugar,
+	btnScores;
 	private JLabel lbNivel,
 	lbNivelNum,
 	lbScore,
@@ -41,32 +31,34 @@ public class MyVentana implements ActionListener{
 	lbTurno,
 	lbTurnoNum,
 	lbTiempo,
-	lbTiempoNum;
+	lbTiempoNum,
+	lbTitulo,
+	lbTexto;
 	private JRadioButton rbtnCentro,
 	rbtnEsquina;
-
 	private byte milisegundos = 0;
 	private byte segundos = 0;
 	private short minutos = 10;
 	private DecimalFormat formatoTiempo;
 	private Timer timer;
 
+//FRAME___________________________________________________________________________________________________________________________________________________________
 	public void crearVentana(){
-		ventana = new JFrame("Fun Colors");
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-		ventana.setSize(1000, 800);
+		this.ventana = new JFrame("Fun Colors");
+		this.ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		this.ventana.setSize(1000, 800);
 		this.crearMenu();
-		ventana.add(menu); 
-		ventana.setLocationRelativeTo(null);
-		ventana.setResizable(false);
-		ventana.setVisible(true);
+		this.ventana.add(menu); 
+		this.ventana.setLocationRelativeTo(null);
+		this.ventana.setResizable(false);
+		this.ventana.setVisible(true);
 	}
 
 	public void crearMenu(){
 		this.menu = new JPanel();
-		menu.setPreferredSize(new Dimension(1000,800));
-		menu.setBackground(Color.WHITE);
-		menu.setLayout(null);
+		this.menu.setPreferredSize(new Dimension(1000,800));
+		this.menu.setBackground(Color.WHITE);
+		this.menu.setLayout(null);
 
 		this.btnJuegoNuevo=new JButton("Juego Nuevo");
 		this.btnJuegoNuevo.setBounds(350,500,300,60);
@@ -89,18 +81,19 @@ public class MyVentana implements ActionListener{
 		this.btnScores.setFont(new Font("arial", Font.PLAIN, 30));
 		this.btnScores.addActionListener(this);
 
-		menu.add(this.btnJuegoNuevo);
-		menu.add(this.btnComojugar);
-		menu.add(this.btnScores);
-		menu.setVisible(true);
+		this.menu.add(this.btnJuegoNuevo);
+		this.menu.add(this.btnComojugar);
+		this.menu.add(this.btnScores);
+		this.menu.setVisible(true);
 	}
 
+	
+	//PANEL INSTRUCCIONES___________________________________________________________________________________________________________________________________________________-
 	public void crearIns(){
 		this.ins = new JPanel();
-		ins.setPreferredSize(new Dimension(1000, 800));
-		ins.setBackground(Color.PINK);
-		ins.setLayout(null);
-
+		this.ins.setPreferredSize(new Dimension(1000, 800));
+		this.ins.setBackground(Color.PINK);
+		this.ins.setLayout(null);
 
 		this.lbTitulo = new JLabel("Cómo jugar");
 		this.lbTitulo.setOpaque(true);
@@ -124,18 +117,18 @@ public class MyVentana implements ActionListener{
 		this.btnAtras.setBackground(Color.RED);
 		this.btnAtras.addActionListener(this);
 
-		ins.add(this.lbTitulo);
-		ins.add(this.lbTexto);
-		ins.add(this.btnAtras);
-		ins.setVisible(false);
+		this.ins.add(this.lbTitulo);
+		this.ins.add(this.lbTexto);
+		this.ins.add(this.btnAtras);
+		this.ins.setVisible(false);
 	}
 	//MY PANEL DIBUJO __________________________________________________________________________________________________________________________________________
 	public void crearDibujo(){
 		this.dibujo = new JPanel();
-		dibujo.setPreferredSize(new Dimension(1000, 800));
+		this.dibujo.setPreferredSize(new Dimension(1000, 800));
 		this.btk = new Backtracking();
 		this.btk.crearTablero();
-		dibujo.setLayout(new GridLayout(14,14));
+		this.dibujo.setLayout(new GridLayout(14,14));
 		this.cuadros=new JLabel[14][14];
 		JLabel cuadro;
 		for(int i = 0; i< 14; i ++){
@@ -197,13 +190,46 @@ public class MyVentana implements ActionListener{
 			}
 		}
 		this.dibujo.repaint();
+		this.ganador();
 		this.btk.imprimeTablero();
 		System.out.println();
 	}
 
-
 	public void pintarEsquinas(int nuevoColor){
 		this.btk.pintaTableroEsquina(this.btk.matriz, nuevoColor);
+		this.btk.setMovimientos(this.btk.getMovimientos()-1);
+		for(int i = 0; i< 14; i ++){
+			for(int j = 0; j< 14; j++){
+				int color = this.btk.matriz[i][j];
+				if(color == 1){
+					this.cuadros[i][j].setBackground(Color.decode("#ff2700"));
+
+				}else if(color == 2){
+					this.cuadros[i][j].setBackground(Color.decode("#a32ce8"));
+
+				}else if(color == 3){
+					this.cuadros[i][j].setBackground(Color.decode("#ffa700"));
+
+				}else if(color == 4){
+					this.cuadros[i][j].setBackground(Color.decode("#63ff00"));
+
+				}else if(color == 5){
+					this.cuadros[i][j].setBackground(Color.decode("#3ea3ff"));
+
+				}else if(color == 6){
+					this.cuadros[i][j].setBackground(Color.decode("#eaff41"));
+
+				}
+			}
+		}
+		this.dibujo.repaint();
+		this.ganador();
+		this.btk.imprimeTablero();
+		System.out.println();
+	}
+	
+	public void siguienteNivel(){
+		this.btk.crearTablero();
 		this.btk.setMovimientos(this.btk.getMovimientos()-1);
 		for(int i = 0; i< 14; i ++){
 			for(int j = 0; j< 14; j++){
@@ -257,18 +283,17 @@ public class MyVentana implements ActionListener{
 	public void ganador(){
 		if (this.btk.ganar()){
 			System.out.println("ERES UN GANADOR");
-			//this.pintaColores();
-			this.btk.setMovimientos(50 - (this.getNivel()* 10));
+			this.siguienteNivel();
+			if(this.getNivel() >= 40){
+				this.btk.setMovimientos(50 - (this.getNivel()* 10));
+			}
 			this.setNivel(this.getNivel() + 1);
-
 		}
 	}
 
 	//Perdedor
 	public void perdedor(){
-		if(this.btk.getMovimientos() == 0){
-			System.out.println("ERES UN PERDEDOR");
-		}
+		System.out.println("PERDISTE");
 	}
 
 
@@ -399,7 +424,7 @@ public class MyVentana implements ActionListener{
 				} else {
 					if (segundos == 0 && minutos == 0) {
 						timer.stop();
-
+						perdedor();
 					} else if (segundos > 0) {
 						segundos--;
 						milisegundos = 99;
@@ -462,6 +487,7 @@ public class MyVentana implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		//Como jugar
 		if(e.getSource() == this.btnComojugar){
 			this.menu.setVisible(false);
 			this.crearIns();
@@ -475,21 +501,21 @@ public class MyVentana implements ActionListener{
 		}
 
 		if(e.getSource() == this.btnJuegoNuevo){
-
 			this.menu.setVisible(false);
 			this.crearDibujo();
 			this.crearControles();
 
-			ventana.add(dibujo);
-			ventana.add(controles, BorderLayout.WEST);
-			dibujo.setVisible(true);
-			controles.setVisible(true);
+			this.ventana.add(dibujo);
+			this.ventana.add(controles, BorderLayout.WEST);
+			this.dibujo.setVisible(true);
+			this.controles.setVisible(true);
 		}
 
 		if(e.getSource() == this.btnMenu){
-			dibujo.setVisible(false);
-			controles.setVisible(false);
+			this.dibujo.setVisible(false);
+			this.controles.setVisible(false);
 			this.menu.setVisible(true);
+			this.timer.restart();
 		}
 		if(this.rbtnCentro.isSelected()){
 			if(e.getSource() == this.btnRojo){
