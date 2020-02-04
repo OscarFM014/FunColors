@@ -69,7 +69,7 @@ public class MyVentana implements ActionListener{
 		menu.setLayout(null);
 
 		this.btnJuegoNuevo=new JButton("Juego Nuevo");
-		this.btnJuegoNuevo.setBounds(350,500,300,60);
+		this.btnJuegoNuevo.setBounds(350,420,300,60);
 		this.btnJuegoNuevo.setBackground(Color.RED);
 		this.btnJuegoNuevo.setHorizontalAlignment(SwingConstants.CENTER);
 		this.btnJuegoNuevo.setFont(new Font("arial", Font.PLAIN, 30));

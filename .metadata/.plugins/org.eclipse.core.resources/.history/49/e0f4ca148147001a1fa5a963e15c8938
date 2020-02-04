@@ -69,7 +69,7 @@ public class MyVentana implements ActionListener{
 		menu.setLayout(null);
 
 		this.btnJuegoNuevo=new JButton("Juego Nuevo");
-		this.btnJuegoNuevo.setBounds(350,500,300,60);
+		this.btnJuegoNuevo.setBounds(350,420,300,60);
 		this.btnJuegoNuevo.setBackground(Color.RED);
 		this.btnJuegoNuevo.setHorizontalAlignment(SwingConstants.CENTER);
 		this.btnJuegoNuevo.setFont(new Font("arial", Font.PLAIN, 30));
@@ -282,6 +282,7 @@ public class MyVentana implements ActionListener{
 		controles.setPreferredSize(new Dimension(240,600));
 		//Boton Rojo
 		this.btnRojo=new JButton();
+		this.btnRojo.setOpaque(true);
 		this.btnRojo.setBackground(Color.RED);
 		this.btnRojo.setForeground(Color.RED);
 		this.btnRojo.setBounds(15,15,60,60);
@@ -379,11 +380,11 @@ public class MyVentana implements ActionListener{
 		this.btnMenu.addActionListener(this);
 
 		//Esquina o Centro
-		this.rbtnCentro =new JRadioButton("Centro");
+		this.rbtnCentro =new JRadioButton("Centro",false);
 		this.rbtnCentro.setFont(new Font("arial", Font.PLAIN, 20));
 		this.rbtnCentro.setBounds(20,170,100,50);
 
-		this.rbtnEsquina  = new JRadioButton("Esquina",true);
+		this.rbtnEsquina  = new JRadioButton("Esquina",false);
 		this.rbtnEsquina.setFont(new Font("arial", Font.PLAIN, 20));
 		this.rbtnEsquina.setBounds(120,170,100,50);
 
@@ -462,6 +463,54 @@ public class MyVentana implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+
+		if(e.getSource() == this.btnRojo){
+			this.pintarEsquinas(1);
+			this.lbScoreNum.setText(""+this.getPuntos());
+			this.lbTurnoNum.setText(""+this.getMovimientos());
+			this.lbNivelNum.setText(""+this.getNivel());
+			timer.start();
+		}
+		if(e.getSource() == this.btnMorado){
+			this.pintarEsquinas(2);
+			this.lbScoreNum.setText(""+this.getPuntos());
+			this.lbTurnoNum.setText(""+this.getMovimientos());
+			this.lbNivelNum.setText(""+this.getNivel());
+			timer.start();
+		}
+
+		if(e.getSource() == this.btnRosa){
+			this.pintarEsquinas(3);
+			this.lbScoreNum.setText(""+this.getPuntos());
+			this.lbTurnoNum.setText(""+this.getMovimientos());
+			this.lbNivelNum.setText(""+this.getNivel());
+			timer.start();
+		}
+
+		if(e.getSource() == this.btnVerde){
+			this.pintarEsquinas(4);
+			this.lbScoreNum.setText(""+this.getPuntos());
+			this.lbTurnoNum.setText(""+this.getMovimientos());
+			this.lbNivelNum.setText(""+this.getNivel());
+			timer.start();
+		}
+
+		if(e.getSource() == this.btnAzul){
+			this.pintarEsquinas(5);
+			this.lbScoreNum.setText(""+this.getPuntos());
+			this.lbTurnoNum.setText(""+this.getMovimientos());
+			this.lbNivelNum.setText(""+this.getNivel());
+			timer.start();
+		}
+
+		if(e.getSource() == this.btnAmarillo){
+			this.pintarEsquinas(6);
+			this.lbScoreNum.setText(""+this.getPuntos());
+			this.lbTurnoNum.setText(""+this.getMovimientos());
+			this.lbNivelNum.setText(""+this.getNivel());
+			timer.start();
+		}
+
 		if(e.getSource() == this.btnComojugar){
 			this.menu.setVisible(false);
 			this.crearIns();
@@ -491,104 +540,6 @@ public class MyVentana implements ActionListener{
 			controles.setVisible(false);
 			this.menu.setVisible(true);
 		}
-		if(this.rbtnCentro.isSelected()){
-			if(e.getSource() == this.btnRojo){
-				this.pintarCentros(1);
-				this.lbScoreNum.setText(""+this.getPuntos());
-				this.lbTurnoNum.setText(""+this.getMovimientos());
-				this.lbNivelNum.setText(""+this.getNivel());
-				timer.start();
-			}
-			if(e.getSource() == this.btnMorado){
-				this.pintarCentros(2);
-				this.lbScoreNum.setText(""+this.getPuntos());
-				this.lbTurnoNum.setText(""+this.getMovimientos());
-				this.lbNivelNum.setText(""+this.getNivel());
-				timer.start();
-			}
-
-			if(e.getSource() == this.btnRosa){
-				this.pintarCentros(3);
-				this.lbScoreNum.setText(""+this.getPuntos());
-				this.lbTurnoNum.setText(""+this.getMovimientos());
-				this.lbNivelNum.setText(""+this.getNivel());
-				timer.start();
-			}
-
-			if(e.getSource() == this.btnVerde){
-				this.pintarCentros(4);
-				this.lbScoreNum.setText(""+this.getPuntos());
-				this.lbTurnoNum.setText(""+this.getMovimientos());
-				this.lbNivelNum.setText(""+this.getNivel());
-				timer.start();
-			}
-
-			if(e.getSource() == this.btnAzul){
-				this.pintarCentros(5);
-				this.lbScoreNum.setText(""+this.getPuntos());
-				this.lbTurnoNum.setText(""+this.getMovimientos());
-				this.lbNivelNum.setText(""+this.getNivel());
-				timer.start();
-			}
-
-			if(e.getSource() == this.btnAmarillo){
-				this.pintarCentros(6);
-				this.lbScoreNum.setText(""+this.getPuntos());
-				this.lbTurnoNum.setText(""+this.getMovimientos());
-				this.lbNivelNum.setText(""+this.getNivel());
-				timer.start();
-			}
-		}else{
-			if(e.getSource() == this.btnRojo){
-				this.pintarEsquinas(1);
-				this.lbScoreNum.setText(""+this.getPuntos());
-				this.lbTurnoNum.setText(""+this.getMovimientos());
-				this.lbNivelNum.setText(""+this.getNivel());
-				timer.start();
-			}
-			if(e.getSource() == this.btnMorado){
-				this.pintarEsquinas(2);
-				this.lbScoreNum.setText(""+this.getPuntos());
-				this.lbTurnoNum.setText(""+this.getMovimientos());
-				this.lbNivelNum.setText(""+this.getNivel());
-				timer.start();
-			}
-
-			if(e.getSource() == this.btnRosa){
-				this.pintarEsquinas(3);
-				this.lbScoreNum.setText(""+this.getPuntos());
-				this.lbTurnoNum.setText(""+this.getMovimientos());
-				this.lbNivelNum.setText(""+this.getNivel());
-				timer.start();
-			}
-
-			if(e.getSource() == this.btnVerde){
-				this.pintarEsquinas(4);
-				this.lbScoreNum.setText(""+this.getPuntos());
-				this.lbTurnoNum.setText(""+this.getMovimientos());
-				this.lbNivelNum.setText(""+this.getNivel());
-				timer.start();
-			}
-
-			if(e.getSource() == this.btnAzul){
-				this.pintarEsquinas(5);
-				this.lbScoreNum.setText(""+this.getPuntos());
-				this.lbTurnoNum.setText(""+this.getMovimientos());
-				this.lbNivelNum.setText(""+this.getNivel());
-				timer.start();
-			}
-
-			if(e.getSource() == this.btnAmarillo){
-				this.pintarEsquinas(6);
-				this.lbScoreNum.setText(""+this.getPuntos());
-				this.lbTurnoNum.setText(""+this.getMovimientos());
-				this.lbNivelNum.setText(""+this.getNivel());
-				timer.start();
-			}
-		}
-
-
-
 
 
 

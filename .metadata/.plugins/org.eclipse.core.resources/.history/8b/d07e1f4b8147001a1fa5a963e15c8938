@@ -69,7 +69,7 @@ public class MyVentana implements ActionListener{
 		menu.setLayout(null);
 
 		this.btnJuegoNuevo=new JButton("Juego Nuevo");
-		this.btnJuegoNuevo.setBounds(350,500,300,60);
+		this.btnJuegoNuevo.setBounds(350,420,300,60);
 		this.btnJuegoNuevo.setBackground(Color.RED);
 		this.btnJuegoNuevo.setHorizontalAlignment(SwingConstants.CENTER);
 		this.btnJuegoNuevo.setFont(new Font("arial", Font.PLAIN, 30));
@@ -461,7 +461,7 @@ public class MyVentana implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		
 		if(e.getSource() == this.btnComojugar){
 			this.menu.setVisible(false);
 			this.crearIns();
@@ -493,14 +493,14 @@ public class MyVentana implements ActionListener{
 		}
 		if(this.rbtnCentro.isSelected()){
 			if(e.getSource() == this.btnRojo){
-				this.pintarCentros(1);
+				this.pintarEsquinas(1);
 				this.lbScoreNum.setText(""+this.getPuntos());
 				this.lbTurnoNum.setText(""+this.getMovimientos());
 				this.lbNivelNum.setText(""+this.getNivel());
 				timer.start();
 			}
 			if(e.getSource() == this.btnMorado){
-				this.pintarCentros(2);
+				this.pintarEsquinas(2);
 				this.lbScoreNum.setText(""+this.getPuntos());
 				this.lbTurnoNum.setText(""+this.getMovimientos());
 				this.lbNivelNum.setText(""+this.getNivel());
@@ -508,7 +508,7 @@ public class MyVentana implements ActionListener{
 			}
 
 			if(e.getSource() == this.btnRosa){
-				this.pintarCentros(3);
+				this.pintarEsquinas(3);
 				this.lbScoreNum.setText(""+this.getPuntos());
 				this.lbTurnoNum.setText(""+this.getMovimientos());
 				this.lbNivelNum.setText(""+this.getNivel());
@@ -516,7 +516,7 @@ public class MyVentana implements ActionListener{
 			}
 
 			if(e.getSource() == this.btnVerde){
-				this.pintarCentros(4);
+				this.pintarEsquinas(4);
 				this.lbScoreNum.setText(""+this.getPuntos());
 				this.lbTurnoNum.setText(""+this.getMovimientos());
 				this.lbNivelNum.setText(""+this.getNivel());
@@ -524,7 +524,7 @@ public class MyVentana implements ActionListener{
 			}
 
 			if(e.getSource() == this.btnAzul){
-				this.pintarCentros(5);
+				this.pintarEsquinas(5);
 				this.lbScoreNum.setText(""+this.getPuntos());
 				this.lbTurnoNum.setText(""+this.getMovimientos());
 				this.lbNivelNum.setText(""+this.getNivel());
@@ -586,9 +586,9 @@ public class MyVentana implements ActionListener{
 				timer.start();
 			}
 		}
+		
 
-
-
+		
 
 
 
