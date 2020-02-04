@@ -18,8 +18,4 @@ public class MyVentanaInstrucciones extends JFrame{
 	}
 
 
-	public static void main(String[] args) {
-		MyVentanaInstrucciones mvo = new MyVentanaInstrucciones();
-
-	}
 }

@@ -1,0 +1,38 @@
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+
+public class MyVentanaDibujo extends JFrame{
+	
+	private boolean flag = true;
+	
+	public MyVentanaDibujo(){
+		super("PIXELATED");
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		MyPanelDibujo pd = new MyPanelDibujo();
+		System.out.println("MyVentanaDibujo:" + flag);
+		pd.setFlag(this.getFlagJuego());
+		this.add(pd); 
+		this.add(new MyPanelControles(pd), BorderLayout.WEST);
+		
+		this.pack();
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true); 
+		
+	}
+	
+	public boolean getFlagJuego(){
+		return this.flag;
+	}
+	
+	public void setFlagJuego(boolean flag){
+		this.flag = flag;
+	}
+	
+	
+	public static void main(String[] args) {
+		//MyVentanaDibujo mv = new MyVentanaDibujo();
+	}
+}

@@ -17,9 +17,4 @@ public class MyVentanaScores extends JFrame{
 
 	}
 
-
-	public static void main(String[] args) {
-		MyVentanaScores mvo = new MyVentanaScores();
-
-	}
 }

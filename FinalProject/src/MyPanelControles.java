@@ -45,38 +45,40 @@ public class MyPanelControles extends  JPanel  implements ActionListener, Change
 
 		//Boton Rojo
 		this.btnRojo=new JButton();
-		this.btnRojo.setBackground(new Color(250,0,47));
+		this.btnRojo.setOpaque(true);
+		this.btnRojo.setBackground(Color.RED);
+		this.btnRojo.setForeground(Color.RED);
 		this.btnRojo.setBounds(15,15,60,60);
 		this.btnRojo.addActionListener(this);
 
 		//Boton Morado
 		this.btnMorado =new JButton();
 		this.btnMorado.setBounds(90,15,60,60);
-		this.btnMorado.setBackground(Color.MAGENTA);
+		this.btnMorado.setBackground(Color.decode("#a32ce8"));
 		this.btnMorado.addActionListener(this);
 
 		//Boton Rosa
 		this.btnRosa=new JButton();
 		this.btnRosa.setBounds(165,15,60,60);
-		this.btnRosa.setBackground(new Color(255, 13, 154));
+		this.btnRosa.setBackground(Color.decode("#ffa700"));
 		this.btnRosa.addActionListener(this);
 
 		//Boton Verde
 		this.btnVerde=new JButton();
 		this.btnVerde.setBounds(15,90,60,60);
-		this.btnVerde.setBackground(Color.GREEN);
+		this.btnVerde.setBackground(Color.decode("#63ff00"));
 		this.btnVerde.addActionListener(this);
 
 		//Boton Azul
 		this.btnAzul=new JButton();
 		this.btnAzul.setBounds(90,90,60,60);
-		this.btnAzul.setBackground(Color.BLUE);
+		this.btnAzul.setBackground(Color.decode("#3ea3ff"));
 		this.btnAzul.addActionListener(this);
 
 		//Boton Amarillo
 		this.btnAmarillo=new JButton();
 		this.btnAmarillo.setBounds(165,90,60,60);
-		this.btnAmarillo.setBackground(Color.YELLOW);
+		this.btnAmarillo.setBackground(Color.decode("#eaff41"));
 		this.btnAmarillo.addActionListener(this);
 
 		//Boton Reinicio
@@ -139,12 +141,12 @@ public class MyPanelControles extends  JPanel  implements ActionListener, Change
 		this.lbTiempoNum.setFont(new Font("arial", Font.PLAIN, 20));
 		this.lbTiempoNum.setBounds(70,730,100,50);
 		formatoTiempo = new DecimalFormat("00");
-		
-		//Boton atras
-		this.btnAtras=new JButton("Atrás");
+
+		//Boton Menu
+		this.btnAtras=new JButton("Menú");
 		this.btnAtras.setHorizontalAlignment(SwingConstants.CENTER);
-		this.btnAtras.setFont(new Font("arial", Font.PLAIN, 50));
-		this.btnAtras.setBounds(70,660,100,50);
+		this.btnAtras.setFont(new Font("arial", Font.PLAIN, 10));
+		this.btnAtras.setBounds(10,730,50,50);
 		this.btnAtras.setBackground(Color.RED);
 		this.btnAtras.addActionListener(this);
 
@@ -193,7 +195,7 @@ public class MyPanelControles extends  JPanel  implements ActionListener, Change
 		this.add(this.lbTurnoNum);
 		this.add(this.lbTiempo);
 		this.add(this.lbTiempoNum);
-		this.add(btnAtras);
+		this.add(this.btnAtras);
 	}
 
 
@@ -234,6 +236,12 @@ public class MyPanelControles extends  JPanel  implements ActionListener, Change
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == btnAtras) {
+			MyVentanaMenu fm = new MyVentanaMenu();
+			fm.setVisible(true);
+			this.setVisible(false);			
+		}
+
 		if(e.getSource() == this.btnRojo){
 			pd.pintarEsquinas(1);
 			this.lbScoreNum.setText(""+pd.getPuntos());
@@ -281,12 +289,7 @@ public class MyPanelControles extends  JPanel  implements ActionListener, Change
 			timer.start();
 		}
 
-		if(e.getSource() == this.btnReinicio){
-			pd.pintaColores();
-			this.lbScoreNum.setText(""+pd.getPuntos());
-			this.lbTurnoNum.setText(""+pd.getMovimientos());
-			this.lbNivelNum.setText(""+pd.getNivel());
-			timer.start();
-		}
+
+
 	}
 }

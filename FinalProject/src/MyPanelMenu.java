@@ -21,8 +21,11 @@ public class MyPanelMenu extends  JPanel  implements ActionListener, ChangeListe
 	btnOpciones,
 	btnComojugar,
 	btnScores;
-	
 
+	public boolean flag = true;
+	public MyVentanaOpciones vo = new MyVentanaOpciones();
+	public MyVentanaInstrucciones vi = new MyVentanaInstrucciones();
+	public MyVentanaScores vs= new MyVentanaScores();
 	public MyPanelMenu(){
 		super();
 		this.setPreferredSize(new Dimension(1000,800));
@@ -114,20 +117,17 @@ public class MyPanelMenu extends  JPanel  implements ActionListener, ChangeListe
 			this.setVisible(false);
 		}
 		else if(e.getSource() == btnOpciones) {
-			MyVentanaOpciones vo = new MyVentanaOpciones();
 			vo.setVisible(true);
 			this.setVisible(false);
 		}
 		else if(e.getSource() == btnComojugar) {
-			MyVentanaInstrucciones vi = new MyVentanaInstrucciones();
 			vi.setVisible(true);
 			this.setVisible(false);
 		}
 		else if(e.getSource() == btnScores) {
-			MyVentanaScores vs= new MyVentanaScores();
+			
 			vs.setVisible(true);
 			this.setVisible(false);
-
 		}
 		
 		

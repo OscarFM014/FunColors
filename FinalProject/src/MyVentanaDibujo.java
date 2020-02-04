@@ -7,9 +7,7 @@ public class MyVentanaDibujo extends JFrame{
 	public MyVentanaDibujo(){
 		super("PIXELATED");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
 		MyPanelDibujo pd = new MyPanelDibujo();
-		
 		this.add(pd); 
 		this.add(new MyPanelControles(pd), BorderLayout.WEST);
 		this.pack();
@@ -19,8 +17,4 @@ public class MyVentanaDibujo extends JFrame{
 		
 	}
 	
-	
-	public static void main(String[] args) {
-		MyVentanaDibujo mv = new MyVentanaDibujo();
-	}
 }

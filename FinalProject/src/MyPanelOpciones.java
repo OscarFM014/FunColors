@@ -16,6 +16,9 @@ public class MyPanelOpciones extends JPanel implements ActionListener{
 	private JRadioButton rbtnCentro,
 						rbtnEsquina;
 	
+	public boolean flagJuego;
+	
+	
 	public MyPanelOpciones(){
 		super();
 		this.setPreferredSize(new Dimension(1000, 800));
@@ -36,7 +39,7 @@ public class MyPanelOpciones extends JPanel implements ActionListener{
 		this.lbPos.setFont(new Font("arial", Font.PLAIN, 50));
 		this.lbPos.setBounds(250,155,500,55);
 		
-		this.rbtnCentro =new JRadioButton("Centro",false);
+		this.rbtnCentro =new JRadioButton("Centro");
 		this.rbtnCentro.setFont(new Font("arial", Font.PLAIN, 50));
 		this.rbtnCentro.setBounds(290,240,210,50);
 		
@@ -63,18 +66,24 @@ public class MyPanelOpciones extends JPanel implements ActionListener{
 		
 		
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(this.rbtnEsquina.isSelected()){
-			
-		}
-		
-		
 		if(e.getSource() == btnAtras) {
+			if(this.rbtnCentro.isSelected()){
+				this.flagJuego = false;
+			}
+			
+			if(this.rbtnEsquina.isSelected()){
+				this.flagJuego = true;
+			}
+			
 			MyVentanaMenu fm = new MyVentanaMenu();
 			fm.setVisible(true);
+			fm.flag = this.flagJuego;
+			System.out.println("MyPanelOpciones:" + this.flagJuego);
 			this.setVisible(false);
 		}
 		

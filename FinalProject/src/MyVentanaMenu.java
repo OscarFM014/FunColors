@@ -4,21 +4,21 @@ import javax.swing.JFrame;
 
 public class MyVentanaMenu extends JFrame{
 	
+	public boolean flag;
+	
 	public MyVentanaMenu(){
-		super("PIXELATED");
+		super("FUN COLORS");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
 		MyPanelMenu po = new MyPanelMenu();	
+		po.flag = this.flag;
+		System.out.println("MyVentanaMenu: " + this.flag);
 		this.setSize(1000, 800);
 		this.add(po);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
-		this.setVisible(true); 
-		
+		this.setVisible(true);
 	}
 	
 	
-	public static void main(String[] args) {
-		MyVentanaMenu mvm = new MyVentanaMenu();
-	}
+	
 }

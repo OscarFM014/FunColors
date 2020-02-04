@@ -1,0 +1,104 @@
+import java.awt.Color;
+
+import javax.swing.JPanel;
+
+public class Backtracking {
+	//Rojo 	 	-> 1
+	//Morado 	-> 2
+	//Rosa   	-> 3
+	//Verde  	-> 4
+	//Azul 	 	-> 5
+	//Amarillo 	-> 6
+
+	public int[][] matriz = new int [14][14];
+	private int puntos = 0;
+	private int movimientos = 50;
+	private int nivel = 1;
+
+	public void imprimeTablero(){
+		for (int fila = 0; fila < matriz.length; fila++) {
+			for (int columna = 0; columna < matriz[fila].length; columna++) {
+				System.out.print(matriz[fila][columna] + ",") ;
+			}
+			System.out.println();
+		}
+	}
+	
+	public void setNivel(int nivel){
+		this.nivel = nivel;
+	}
+	
+	public int getNivel(){
+		return this.nivel;
+	}
+
+	public int getPuntos(){
+		return this.puntos;
+	}
+	
+	public int getMovimientos(){
+		return this.movimientos;
+	}
+	
+	public void setMovimientos(int movimientos){
+		this.movimientos = movimientos;
+	}
+
+	public void crearTablero(){
+		for(int i = 0; i< 14; i ++){
+			for(int j = 0; j< 14; j++){
+				int color = (int)Math.floor(Math.random()*6+1);
+				if(color == 1){
+					this.matriz[i][j] = 1;
+				}else if(color == 2){
+					this.matriz[i][j] = 2;
+				}else if(color == 3){
+					this.matriz[i][j] = 3;
+				}else if(color == 4){
+					this.matriz[i][j] = 4;
+				}else if(color == 5){
+					this.matriz[i][j] = 5;
+				}else if(color == 6){
+					this.matriz[i][j] = 6;
+				}
+			}
+		}
+	}
+
+	public void pintaTableroEsquina(int [][] tablero, int nuevoColor){
+		if()
+		int antiguoColor = tablero[0][0];
+		pintaTablero(tablero, 0, 0, antiguoColor, nuevoColor);
+	}
+	
+	public void pintaTableroCentro(int [][] tablero, int nuevoColor){
+		int antiguoColor = tablero[7][7];
+		pintaTablero(tablero, 7, 7, antiguoColor, nuevoColor);
+	}
+
+	private void pintaTablero(int [][] tablero, int fila , int columna, int antiguoColor, int nuevoColor){
+		if(fila < 0 || columna < 0 || fila >= tablero.length || columna >= tablero[fila].length || tablero[fila][columna] != antiguoColor ){
+			return;
+		}
+		tablero[fila][columna] = nuevoColor;
+		this.puntos = puntos + nuevoColor;
+		pintaTablero(tablero, fila + 1, columna, antiguoColor, nuevoColor);
+		pintaTablero(tablero, fila - 1, columna, antiguoColor, nuevoColor);
+		pintaTablero(tablero, fila, columna + 1, antiguoColor, nuevoColor);
+		pintaTablero(tablero, fila, columna - 1, antiguoColor, nuevoColor);
+	}
+
+	public boolean ganar(){
+		int semilla = this.matriz[0][0];
+		for (int fila = 0; fila < matriz.length; fila++) {
+			for (int columna = 0; columna < matriz.length; columna++) {
+				if(this.matriz[fila][columna] != semilla){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+
+}

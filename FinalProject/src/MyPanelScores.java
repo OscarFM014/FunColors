@@ -42,7 +42,7 @@ public class MyPanelScores extends JPanel implements ActionListener{
 			}
 			
 		}catch(Exception err){
-			System.out.println("error-----");
+			System.out.println("");
 		}
 		
 		
