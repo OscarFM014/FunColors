@@ -330,11 +330,9 @@ public class MyVentana implements ActionListener{
 			}
 			this.setNivel(this.getNivel() + 1);
 		}
-		
 		if(this.getMovimientos() == 0){
 			this.perdedor();
 		}
-		
 	}
 
 	//Perdedor

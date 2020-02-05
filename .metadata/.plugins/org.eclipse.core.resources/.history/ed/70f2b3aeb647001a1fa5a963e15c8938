@@ -73,9 +73,9 @@ public class MyVentana implements ActionListener{
 
 	private JRadioButton rbtnCentro = new JRadioButton(),
 			rbtnEsquina = new JRadioButton();
-	private byte milisegundos = 0;
+	private byte milisegundos = 10;
 	private byte segundos = 0;
-	private short minutos = 10;
+	private short minutos = 0;
 	private DecimalFormat formatoTiempo;
 	private Timer timer;
 	private boolean flag = false;
@@ -330,11 +330,9 @@ public class MyVentana implements ActionListener{
 			}
 			this.setNivel(this.getNivel() + 1);
 		}
-		
 		if(this.getMovimientos() == 0){
 			this.perdedor();
 		}
-		
 	}
 
 	//Perdedor

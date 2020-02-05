@@ -232,7 +232,8 @@ public class MyVentana implements ActionListener{
 		}
 		this.dibujo.repaint();
 		this.ganador();
-
+		this.btk.imprimeTablero();
+		System.out.println();
 	}
 
 	//Pinta Esquinas
@@ -265,6 +266,7 @@ public class MyVentana implements ActionListener{
 		}
 		this.dibujo.repaint();
 		this.ganador();
+
 	}
 
 	//Pinta siguiente nivel
@@ -330,11 +332,6 @@ public class MyVentana implements ActionListener{
 			}
 			this.setNivel(this.getNivel() + 1);
 		}
-		
-		if(this.getMovimientos() == 0){
-			this.perdedor();
-		}
-		
 	}
 
 	//Perdedor
