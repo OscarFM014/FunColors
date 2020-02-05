@@ -531,7 +531,6 @@ public class MyVentana implements ActionListener{
 	public void crearScore(){
 		this.score = new JPanel();
 		this.score.setLayout(null);
-		this.score.setBackground(Color.decode("#80d5fc"));
 		this.score.setPreferredSize(new Dimension(1000, 800));
 
 		this.lbTituloScore = new JLabel("Puntuaciones más altas");
@@ -797,7 +796,6 @@ public class MyVentana implements ActionListener{
 		this.gameOver = new JPanel();
 		this.gameOver.setLayout(null);
 		this.gameOver.setPreferredSize(new Dimension(1000, 800));
-		this.gameOver.setBackground(Color.decode("#80d5fc"));
 
 		this.lbover = new JLabel("Game Over");
 		this.lbover.setOpaque(true);

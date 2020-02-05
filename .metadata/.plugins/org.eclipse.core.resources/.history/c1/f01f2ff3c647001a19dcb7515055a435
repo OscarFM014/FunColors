@@ -143,13 +143,12 @@ public class MyVentana implements ActionListener{
 		this.lbTitulo.setFont(new Font("Helvetica", Font.PLAIN, 50));
 		this.lbTitulo.setBounds(350,25,300,60);
 
-		String texto = "<html><body>¡Un color es sufuciente! <br>  <br>Su objetivo es ordenar la<br> pantalla, dejando  "
-				+ " solo un color. <br> Expanda \"su idea\" a <br> los píxeles vecinos, eligiendo el color "
-				+ "de los píxeles que se capturarán.</body></html>";
+		String texto = "¡Un color es sufuciente! <br>  <br>Su objetivo es ordenar la pantalla, dejando  "
+				+ "<br> solo un color. <br> Expanda \"su idea\" a <br> los píxeles vecinos, <br> eligiendo el color "
+				+ "de <br> los píxeles que se  <br> capturarán.</body></html>";
 		this.lbTexto = new JLabel(texto);
 		this.lbTexto.setOpaque(true);
-
-		//this.lbTexto.setHorizontalAlignment(SwingConstants.CENTER);
+		this.lbTexto.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lbTexto.setFont(new Font("Helvetica", Font.PLAIN, 40));
 		this.lbTexto.setBounds(200,95,600,590);
 
@@ -531,7 +530,6 @@ public class MyVentana implements ActionListener{
 	public void crearScore(){
 		this.score = new JPanel();
 		this.score.setLayout(null);
-		this.score.setBackground(Color.decode("#80d5fc"));
 		this.score.setPreferredSize(new Dimension(1000, 800));
 
 		this.lbTituloScore = new JLabel("Puntuaciones más altas");
@@ -797,7 +795,6 @@ public class MyVentana implements ActionListener{
 		this.gameOver = new JPanel();
 		this.gameOver.setLayout(null);
 		this.gameOver.setPreferredSize(new Dimension(1000, 800));
-		this.gameOver.setBackground(Color.decode("#80d5fc"));
 
 		this.lbover = new JLabel("Game Over");
 		this.lbover.setOpaque(true);
