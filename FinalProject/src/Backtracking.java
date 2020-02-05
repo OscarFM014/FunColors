@@ -23,11 +23,11 @@ public class Backtracking {
 			System.out.println();
 		}
 	}
-	
+
 	public void setNivel(int nivel){
 		this.nivel = nivel;
 	}
-	
+
 	public int getNivel(){
 		return this.nivel;
 	}
@@ -35,11 +35,11 @@ public class Backtracking {
 	public int getPuntos(){
 		return this.puntos;
 	}
-	
+
 	public int getMovimientos(){
 		return this.movimientos;
 	}
-	
+
 	public void setMovimientos(int movimientos){
 		this.movimientos = movimientos;
 	}
@@ -66,25 +66,30 @@ public class Backtracking {
 	}
 
 	public void pintaTableroEsquina(int [][] tablero, int nuevoColor){
+
 		int antiguoColor = tablero[0][0];
-		pintaTablero(tablero, 0, 0, antiguoColor, nuevoColor);
+		if(antiguoColor != nuevoColor){
+			pintaTablero(tablero, 0, 0, antiguoColor, nuevoColor);
+		}
+
 	}
-	
+
 	public void pintaTableroCentro(int [][] tablero, int nuevoColor){
 		int antiguoColor = tablero[7][7];
-		pintaTablero(tablero, 7, 7, antiguoColor, nuevoColor);
+		if(antiguoColor != nuevoColor){
+			pintaTablero(tablero, 7, 7, antiguoColor, nuevoColor);
+		}
 	}
 
 	private void pintaTablero(int [][] tablero, int fila , int columna, int antiguoColor, int nuevoColor){
-		if(fila < 0 || columna < 0 || fila >= tablero.length || columna >= tablero[fila].length || tablero[fila][columna] != antiguoColor ){
-			return;
+		if( !(fila < 0 || columna < 0 || fila >= tablero.length || columna >= tablero[fila].length || tablero[fila][columna] != antiguoColor) ){
+			tablero[fila][columna] = nuevoColor;
+			this.puntos = puntos + nuevoColor;
+			pintaTablero(tablero, fila + 1, columna, antiguoColor, nuevoColor);
+			pintaTablero(tablero, fila - 1, columna, antiguoColor, nuevoColor);
+			pintaTablero(tablero, fila, columna + 1, antiguoColor, nuevoColor);
+			pintaTablero(tablero, fila, columna - 1, antiguoColor, nuevoColor);
 		}
-		tablero[fila][columna] = nuevoColor;
-		this.puntos = puntos + nuevoColor;
-		pintaTablero(tablero, fila + 1, columna, antiguoColor, nuevoColor);
-		pintaTablero(tablero, fila - 1, columna, antiguoColor, nuevoColor);
-		pintaTablero(tablero, fila, columna + 1, antiguoColor, nuevoColor);
-		pintaTablero(tablero, fila, columna - 1, antiguoColor, nuevoColor);
 	}
 
 	public boolean ganar(){

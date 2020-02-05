@@ -78,6 +78,7 @@ public class MyVentana implements ActionListener{
 	private short minutos = 10;
 	private DecimalFormat formatoTiempo;
 	private Timer timer;
+	private boolean flag = false;
 
 	//Frame Ventana___________________________________________________________________________________________________________________________________________________________
 	public void crearVentana(){
@@ -446,7 +447,7 @@ public class MyVentana implements ActionListener{
 		this.lbTiempoNum.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lbTiempoNum.setFont(new Font("arial", Font.PLAIN, 20));
 		this.lbTiempoNum.setBounds(70,710,100,50);
-		formatoTiempo = new DecimalFormat("00");
+		this.formatoTiempo = new DecimalFormat("00");
 
 		//Boton Menu
 		this.btnMenu=new JButton("Menú");
@@ -468,10 +469,9 @@ public class MyVentana implements ActionListener{
 		ButtonGroup grupoR = new ButtonGroup();
 		grupoR.add(this.rbtnEsquina);
 		grupoR.add(this.rbtnCentro);
-
-		timer = new Timer(10, new ActionListener() {
-
+		this.timer = new Timer(10, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				if (milisegundos > 0) {
 					milisegundos--;
 				} else {
@@ -487,15 +487,13 @@ public class MyVentana implements ActionListener{
 						milisegundos = 99;
 					}
 				}
-				lbTiempoNum.setText(formatoTiempo.format(minutos) + ":"
-						+ formatoTiempo.format(segundos) + "."
-						+ formatoTiempo.format(milisegundos));
+				lbTiempoNum.setText(formatoTiempo.format(minutos) + ":"+ formatoTiempo.format(segundos) + "."+ formatoTiempo.format(milisegundos));
 			}
 		});
+		
 
-		lbTiempoNum.setText(formatoTiempo.format(minutos) + ":"
-				+ formatoTiempo.format(segundos) + "."
-				+ formatoTiempo.format(milisegundos));
+		this.lbTiempoNum.setText(formatoTiempo.format(minutos) + ":"+ formatoTiempo.format(segundos) + "."+ formatoTiempo.format(milisegundos));
+		
 
 		//Add 
 		controles.add(this.btnRojo);
@@ -795,8 +793,13 @@ public class MyVentana implements ActionListener{
 		//Menu
 		if(e.getSource() == this.btnMenu){
 			this.dibujo.setVisible(false);
-			this.controles.setVisible(false);
+			this.controles.setVisible(true);
 			this.menu.setVisible(true);
+			this.timer.stop();
+			this.milisegundos = 0;
+            this.segundos = 0;
+            this.minutos = 10;
+            this.lbTiempoNum.setText(formatoTiempo.format(minutos) + ":"+ formatoTiempo.format(segundos) + "."+ formatoTiempo.format(milisegundos));
 		}
 
 		//Como jugar
@@ -830,6 +833,7 @@ public class MyVentana implements ActionListener{
 		//Juego nuevo
 		if(e.getSource() == this.btnJuegoNuevo){
 			this.menu.setVisible(false);
+			this.flag = false;
 			this.crearDibujo();
 			this.crearControles();
 			this.ventana.add(dibujo);

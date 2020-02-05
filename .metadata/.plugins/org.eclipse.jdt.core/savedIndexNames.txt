@@ -2,7 +2,6 @@ INDEX VERSION 1.129+/Users/Oscar/Desktop/FinalProject/.metadata/.plugins/org.ecl
 3227702110.index
 1044104405.index
 3358580009.index
-296566835.index
 527849843.index
 204893112.index
 2979435446.index
