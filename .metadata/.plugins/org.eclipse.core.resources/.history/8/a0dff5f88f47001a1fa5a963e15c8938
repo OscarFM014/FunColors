@@ -1,0 +1,17 @@
+import java.awt.Color;
+
+import javax.swing.*;
+
+public class Prueba {
+	public static void main(String[] args) {
+		JFrame ventana=new JFrame();
+		JButton boton=new JButton();
+		boton.setBackground(Color.decode("#000000"));
+		ventana.add(boton);
+		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventana.setSize(800, 600);
+		ventana.setVisible(true);
+	}
+	
+
+}

@@ -1,0 +1,12 @@
+import javax.swing.*;
+
+public class Prueba {
+	JFrame ventana = new JFrame();
+	JPanel x = new JPanel();
+	
+	public void crear(){
+		ventana.size(100,100);
+	}
+	
+
+}
