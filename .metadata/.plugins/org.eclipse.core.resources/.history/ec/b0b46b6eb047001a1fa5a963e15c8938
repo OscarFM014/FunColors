@@ -325,10 +325,8 @@ public class MyVentana implements ActionListener{
 		if (this.btk.ganar()){
 			System.out.println("ERES UN GANADOR");
 			this.siguienteNivel();
-			if(this.getNivel() <= 30){
+			if(this.getNivel() >= 40){
 				this.btk.setMovimientos(50 - (this.getNivel()* 10));
-			}else{
-				this.btk.setMovimientos(20);
 			}
 			this.setNivel(this.getNivel() + 1);
 		}
@@ -452,7 +450,7 @@ public class MyVentana implements ActionListener{
 		this.btnMenu=new JButton("Menú");
 		this.btnMenu.setHorizontalAlignment(SwingConstants.CENTER);
 		this.btnMenu.setFont(new Font("arial", Font.PLAIN, 10));
-		this.btnMenu.setBounds(10,710,50,50);
+		this.btnMenu.setBounds(10,730,50,50);
 		this.btnMenu.setBackground(Color.RED);
 		this.btnMenu.addActionListener(this);
 

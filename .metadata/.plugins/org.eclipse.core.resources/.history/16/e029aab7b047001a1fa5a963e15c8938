@@ -325,10 +325,10 @@ public class MyVentana implements ActionListener{
 		if (this.btk.ganar()){
 			System.out.println("ERES UN GANADOR");
 			this.siguienteNivel();
-			if(this.getNivel() <= 30){
+			if(this.getNivel() >= 40){
 				this.btk.setMovimientos(50 - (this.getNivel()* 10));
 			}else{
-				this.btk.setMovimientos(20);
+				
 			}
 			this.setNivel(this.getNivel() + 1);
 		}

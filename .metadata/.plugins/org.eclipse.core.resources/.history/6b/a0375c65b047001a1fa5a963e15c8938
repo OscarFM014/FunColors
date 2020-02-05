@@ -325,10 +325,8 @@ public class MyVentana implements ActionListener{
 		if (this.btk.ganar()){
 			System.out.println("ERES UN GANADOR");
 			this.siguienteNivel();
-			if(this.getNivel() <= 30){
+			if(this.getNivel() >= 40){
 				this.btk.setMovimientos(50 - (this.getNivel()* 10));
-			}else{
-				this.btk.setMovimientos(20);
 			}
 			this.setNivel(this.getNivel() + 1);
 		}
@@ -426,33 +424,33 @@ public class MyVentana implements ActionListener{
 		this.lbTurno.setOpaque(true);
 		this.lbTurno.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lbTurno.setFont(new Font("arial", Font.PLAIN, 20));
-		this.lbTurno.setBounds(70,500,100,50);
+		this.lbTurno.setBounds(70,520,100,50);
 
 		this.lbTurnoNum = new JLabel(""+ this.getMovimientos());
 		this.lbTurnoNum.setOpaque(true);
 		this.lbTurnoNum.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lbTurnoNum.setFont(new Font("arial", Font.PLAIN, 20));
-		this.lbTurnoNum.setBounds(70,570,100,50);
+		this.lbTurnoNum.setBounds(70,590,100,50);
 
 		//Tiempo
 		this.lbTiempo = new JLabel("Tiempo");
 		this.lbTiempo.setOpaque(true);
 		this.lbTiempo.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lbTiempo.setFont(new Font("arial", Font.PLAIN, 20));
-		this.lbTiempo.setBounds(70,640,100,50);
+		this.lbTiempo.setBounds(70,660,100,50);
 
 		this.lbTiempoNum = new JLabel();
 		this.lbTiempoNum.setOpaque(true);
 		this.lbTiempoNum.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lbTiempoNum.setFont(new Font("arial", Font.PLAIN, 20));
-		this.lbTiempoNum.setBounds(70,710,100,50);
+		this.lbTiempoNum.setBounds(70,730,100,50);
 		formatoTiempo = new DecimalFormat("00");
 
 		//Boton Menu
 		this.btnMenu=new JButton("Menú");
 		this.btnMenu.setHorizontalAlignment(SwingConstants.CENTER);
 		this.btnMenu.setFont(new Font("arial", Font.PLAIN, 10));
-		this.btnMenu.setBounds(10,710,50,50);
+		this.btnMenu.setBounds(10,730,50,50);
 		this.btnMenu.setBackground(Color.RED);
 		this.btnMenu.addActionListener(this);
 

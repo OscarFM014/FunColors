@@ -70,9 +70,9 @@ public class MyVentana implements ActionListener{
 	lbName8,
 	lbName9,
 	lbName10;
-
+	
 	private JRadioButton rbtnCentro = new JRadioButton(),
-			rbtnEsquina = new JRadioButton();
+	rbtnEsquina = new JRadioButton();
 	private byte milisegundos = 0;
 	private byte segundos = 0;
 	private short minutos = 10;
@@ -325,10 +325,8 @@ public class MyVentana implements ActionListener{
 		if (this.btk.ganar()){
 			System.out.println("ERES UN GANADOR");
 			this.siguienteNivel();
-			if(this.getNivel() <= 30){
+			if(this.getNivel() >= 40){
 				this.btk.setMovimientos(50 - (this.getNivel()* 10));
-			}else{
-				this.btk.setMovimientos(20);
 			}
 			this.setNivel(this.getNivel() + 1);
 		}
@@ -344,9 +342,9 @@ public class MyVentana implements ActionListener{
 
 	public void crearControles(){
 		this.controles = new JPanel();
-		this.controles.setBackground(Color.WHITE);
-		this.controles.setLayout(null);
-		this.controles.setPreferredSize(new Dimension(240,800));
+		controles.setBackground(Color.WHITE);
+		controles.setLayout(null);
+		controles.setPreferredSize(new Dimension(240,600));
 		//Boton Rojo
 		this.btnRojo=new JButton();
 		this.btnRojo.setOpaque(true);
@@ -400,70 +398,70 @@ public class MyVentana implements ActionListener{
 		this.lbNivel.setOpaque(true);
 		this.lbNivel.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lbNivel.setFont(new Font("arial", Font.PLAIN, 20));
-		this.lbNivel.setBounds(70,220,100,50);
+		this.lbNivel.setBounds(70,240,100,50);
 
 		this.lbNivelNum = new JLabel("1");
 		this.lbNivelNum.setOpaque(true);
 		this.lbNivelNum.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lbNivelNum.setFont(new Font("arial", Font.PLAIN, 20));
-		this.lbNivelNum.setBounds(70,290,100,50);
+		this.lbNivelNum.setBounds(70,310,100,50);
 
 		//Score
 		this.lbScore = new JLabel("Score");
 		this.lbScore.setOpaque(true);
 		this.lbScore.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lbScore.setFont(new Font("arial", Font.PLAIN, 20));
-		this.lbScore.setBounds(70,360,100,50);
+		this.lbScore.setBounds(70,380,100,50);
 
 		this.lbScoreNum = new JLabel("0");
 		this.lbScoreNum.setOpaque(true);
 		this.lbScoreNum.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lbScoreNum.setFont(new Font("arial", Font.PLAIN, 20));
-		this.lbScoreNum.setBounds(70,430,100,50);
+		this.lbScoreNum.setBounds(70,450,100,50);
 
 		//Movimientos
 		this.lbTurno = new JLabel("Turnos");
 		this.lbTurno.setOpaque(true);
 		this.lbTurno.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lbTurno.setFont(new Font("arial", Font.PLAIN, 20));
-		this.lbTurno.setBounds(70,500,100,50);
+		this.lbTurno.setBounds(70,520,100,50);
 
 		this.lbTurnoNum = new JLabel(""+ this.getMovimientos());
 		this.lbTurnoNum.setOpaque(true);
 		this.lbTurnoNum.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lbTurnoNum.setFont(new Font("arial", Font.PLAIN, 20));
-		this.lbTurnoNum.setBounds(70,570,100,50);
+		this.lbTurnoNum.setBounds(70,590,100,50);
 
 		//Tiempo
 		this.lbTiempo = new JLabel("Tiempo");
 		this.lbTiempo.setOpaque(true);
 		this.lbTiempo.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lbTiempo.setFont(new Font("arial", Font.PLAIN, 20));
-		this.lbTiempo.setBounds(70,640,100,50);
+		this.lbTiempo.setBounds(70,660,100,50);
 
 		this.lbTiempoNum = new JLabel();
 		this.lbTiempoNum.setOpaque(true);
 		this.lbTiempoNum.setHorizontalAlignment(SwingConstants.CENTER);
 		this.lbTiempoNum.setFont(new Font("arial", Font.PLAIN, 20));
-		this.lbTiempoNum.setBounds(70,710,100,50);
+		this.lbTiempoNum.setBounds(70,730,100,50);
 		formatoTiempo = new DecimalFormat("00");
 
 		//Boton Menu
 		this.btnMenu=new JButton("Menú");
 		this.btnMenu.setHorizontalAlignment(SwingConstants.CENTER);
 		this.btnMenu.setFont(new Font("arial", Font.PLAIN, 10));
-		this.btnMenu.setBounds(10,710,50,50);
+		this.btnMenu.setBounds(10,730,50,50);
 		this.btnMenu.setBackground(Color.RED);
 		this.btnMenu.addActionListener(this);
 
 		//Esquina o Centro
 		this.rbtnCentro =new JRadioButton("Centro");
 		this.rbtnCentro.setFont(new Font("arial", Font.PLAIN, 20));
-		this.rbtnCentro.setBounds(120,150,100,50);
+		this.rbtnCentro.setBounds(20,170,100,50);
 
 		this.rbtnEsquina  = new JRadioButton("Esquina",true);
 		this.rbtnEsquina.setFont(new Font("arial", Font.PLAIN, 20));
-		this.rbtnEsquina.setBounds(20,150,100,50);
+		this.rbtnEsquina.setBounds(120,170,100,50);
 
 		ButtonGroup grupoR = new ButtonGroup();
 		grupoR.add(this.rbtnEsquina);
@@ -523,6 +521,7 @@ public class MyVentana implements ActionListener{
 	//My Panel Score___________________________________________________________________________________________________________________________________________________
 	public void crearScore(){
 		this.score = new JPanel();
+		
 		this.score.setLayout(null);
 		this.score.setPreferredSize(new Dimension(1000, 800));
 
@@ -817,14 +816,7 @@ public class MyVentana implements ActionListener{
 		if(e.getSource() == this.btnScores){
 			this.menu.setVisible(false);
 			this.crearScore();
-			ventana.add(this.score);
 			this.score.setVisible(true);
-		}
-
-		//Score
-		if(e.getSource() == this.btnAtrasScore){
-			this.menu.setVisible(true);
-			this.score.setVisible(false);
 		}
 
 		//Juego nuevo
