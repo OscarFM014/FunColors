@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class MyVentana implements ActionListener{
 	JFrame ventana;
-	JPanel menu,ins,dibujo,controles,score;
+	JPanel menu,ins,dibujo,controles,score,gameOver;
 	private Backtracking btk;
 	private JLabel[][] cuadros;
 	private JButton btnRojo,
@@ -24,7 +24,8 @@ public class MyVentana implements ActionListener{
 	btnJuegoNuevo,
 	btnComojugar,
 	btnScores,
-	btnAtrasScore;
+	btnAtrasScore,
+	btnName;
 	private JLabel lbNivel,
 	lbNivelNum,
 	lbScore,
@@ -35,6 +36,8 @@ public class MyVentana implements ActionListener{
 	lbTiempoNum,
 	lbTitulo,
 	lbTexto;
+
+	private JTextField tfName;
 
 	private JLabel lbTituloScore,
 	lbRank,
@@ -69,7 +72,10 @@ public class MyVentana implements ActionListener{
 	lbName7,
 	lbName8,
 	lbName9,
-	lbName10;
+	lbName10,
+	lbover,
+	lbingresa,
+	lbPuntajeFinal;
 
 	private JRadioButton rbtnCentro = new JRadioButton(),
 			rbtnEsquina = new JRadioButton();
@@ -78,7 +84,7 @@ public class MyVentana implements ActionListener{
 	private short minutos = 10;
 	private DecimalFormat formatoTiempo;
 	private Timer timer;
-	private boolean flag = false;
+
 
 	//Frame Ventana___________________________________________________________________________________________________________________________________________________________
 	public void crearVentana(){
@@ -330,21 +336,24 @@ public class MyVentana implements ActionListener{
 			}
 			this.setNivel(this.getNivel() + 1);
 		}
-		
+
 		if(this.getMovimientos() == 0){
 			this.perdedor();
 		}
-		
+
 	}
 
 	//Perdedor
 	public void perdedor(){
-		System.out.println("PERDISTE");
+		this.dibujo.setVisible(false);
+		this.controles.setVisible(false);
+		this.crearGameOver();
+		this.ventana.add(gameOver);
+		this.gameOver.setVisible(true);
 	}
 
 
 	//Panel Controles_______________________________________________________________________________________________________________________________________________________________
-
 	public void crearControles(){
 		this.controles = new JPanel();
 		this.controles.setBackground(Color.WHITE);
@@ -473,7 +482,7 @@ public class MyVentana implements ActionListener{
 		grupoR.add(this.rbtnCentro);
 		this.timer = new Timer(10, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				if (milisegundos > 0) {
 					milisegundos--;
 				} else {
@@ -492,10 +501,10 @@ public class MyVentana implements ActionListener{
 				lbTiempoNum.setText(formatoTiempo.format(minutos) + ":"+ formatoTiempo.format(segundos) + "."+ formatoTiempo.format(milisegundos));
 			}
 		});
-		
+
 
 		this.lbTiempoNum.setText(formatoTiempo.format(minutos) + ":"+ formatoTiempo.format(segundos) + "."+ formatoTiempo.format(milisegundos));
-		
+
 
 		//Add 
 		controles.add(this.btnRojo);
@@ -783,6 +792,45 @@ public class MyVentana implements ActionListener{
 	}
 
 
+	//My Panel Game Over
+
+	public void crearGameOver(){
+		this.gameOver = new JPanel();
+		this.gameOver.setLayout(null);
+		this.gameOver.setPreferredSize(new Dimension(1000, 800));
+
+		this.lbover = new JLabel("Game Over");
+		this.lbover.setOpaque(true);
+		this.lbover.setHorizontalAlignment(SwingConstants.CENTER);
+		this.lbover.setFont(new Font("Impact", Font.PLAIN, 50));
+		this.lbover.setBounds(200,50,600,60);
+		
+		this.lbingresa = new JLabel("Ingrese un nombre");
+		this.lbingresa.setFont(new Font("Impact", Font.PLAIN, 30));
+		this.lbingresa.setBounds(390,130,600,60);
+
+		this.tfName = new JTextField();
+		this.tfName.setBounds(430,200,100,50);
+
+		this.btnName=new JButton("¡Listo!");
+		this.btnName.setHorizontalAlignment(SwingConstants.CENTER);
+		this.btnName.setFont(new Font("Impact", Font.PLAIN, 15));
+		this.btnName.setBounds(530,200,50,50);
+		this.btnName.setBackground(Color.RED);
+		this.btnName.addActionListener(this);
+		
+		this.lbPuntajeFinal = new JLabel(this.btk.getPuntos() + " puntos");
+		this.lbPuntajeFinal.setFont(new Font("Helvetica", Font.PLAIN, 50));
+		this.lbPuntajeFinal.setBounds(400,400,600,60);
+		
+		this.gameOver.add(btnName);
+		this.gameOver.add(tfName);
+		this.gameOver.add(lbingresa);
+		this.gameOver.add(lbPuntajeFinal);
+		this.gameOver.add(lbover);
+		this.gameOver.setVisible(false);
+
+	}
 	//Main ______________________________________________________________________________________________________________________________________________________________
 	public static void main(String[] args) {
 		MyVentana v = new MyVentana();
@@ -795,13 +843,13 @@ public class MyVentana implements ActionListener{
 		//Menu
 		if(e.getSource() == this.btnMenu){
 			this.dibujo.setVisible(false);
-			this.controles.setVisible(true);
+			this.controles.setVisible(false);
 			this.menu.setVisible(true);
 			this.timer.stop();
 			this.milisegundos = 0;
-            this.segundos = 0;
-            this.minutos = 10;
-            this.lbTiempoNum.setText(formatoTiempo.format(minutos) + ":"+ formatoTiempo.format(segundos) + "."+ formatoTiempo.format(milisegundos));
+			this.segundos = 0;
+			this.minutos = 10;
+			this.lbTiempoNum.setText(formatoTiempo.format(minutos) + ":"+ formatoTiempo.format(segundos) + "."+ formatoTiempo.format(milisegundos));
 		}
 
 		//Como jugar
@@ -828,6 +876,7 @@ public class MyVentana implements ActionListener{
 
 		//Score
 		if(e.getSource() == this.btnAtrasScore){
+
 			this.menu.setVisible(true);
 			this.score.setVisible(false);
 		}
@@ -835,13 +884,25 @@ public class MyVentana implements ActionListener{
 		//Juego nuevo
 		if(e.getSource() == this.btnJuegoNuevo){
 			this.menu.setVisible(false);
-			this.flag = false;
 			this.crearDibujo();
 			this.crearControles();
 			this.ventana.add(dibujo);
 			this.ventana.add(controles, BorderLayout.WEST);
 			this.dibujo.setVisible(true);
 			this.controles.setVisible(true);
+		}
+		
+		//Game Over
+		if(e.getSource() == this.btnName){
+			this.gameOver.setVisible(false);
+			this.crearScore();
+			ventana.add(this.score);
+			this.score.setVisible(true);
+			this.timer.stop();
+			this.milisegundos = 0;
+			this.segundos = 0;
+			this.minutos = 10;
+			this.lbTiempoNum.setText(formatoTiempo.format(minutos) + ":"+ formatoTiempo.format(segundos) + "."+ formatoTiempo.format(milisegundos));
 		}
 
 		if(this.rbtnCentro.isSelected()){
